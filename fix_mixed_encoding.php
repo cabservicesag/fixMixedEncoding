@@ -2,11 +2,12 @@
 
 // show usage
 if(!is_file($argv[1]) || is_empty($argv[0])) {
-	echo "\nUsage: > php fix_mixed_encoding.php inputfile.sql outputfile.sql";
+	echo "\nUsage: > php fix_mixed_encoding.php inputfile.sql outputfile.sql\n";
+	exit;
 }
 
 // replace damaged utf8 characters with fixed ones
-function fix_double_encoding($string) {
+function fixMixedCharacters($string) {
 	$searchReplace = array(
 	'Ã¼'=>'ü',
 	'Ã¤'=>'ä',
@@ -72,5 +73,5 @@ function fix_double_encoding($string) {
 
 // get file, fix characters and writ it back
 $fixThisString = file_get_contents($argv[1]);
-$fixedString = fix_double_encoding($fixThisString);
+$fixedString = fixMixedCharacters($fixThisString);
 file_put_contents($argv[2], $fixedString);
