@@ -1,7 +1,7 @@
 <?php
 
 // show usage
-if(!is_file($argv[1]) || is_empty($argv[0])) {
+if(!is_file($argv[1]) || empty($argv[0])) {
 	echo "\nUsage: > php fix_mixed_encoding.php inputfile.sql outputfile.sql\n";
 	exit;
 }
