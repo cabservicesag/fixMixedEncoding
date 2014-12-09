@@ -71,7 +71,15 @@ function fixMixedCharacters($string) {
 	return str_replace(array_keys($searchReplace), $searchReplace, $string);
 }
 
-// get file, fix characters and writ it back
-$fixThisString = file_get_contents($argv[1]);
-$fixedString = fixMixedCharacters($fixThisString);
-file_put_contents($argv[2], $fixedString);
+// open input file
+$fp = fopen($argv[1], ‚r‘);
+// open/create output file
+$fp2 = fopen($argv[2], ‚w+‘);
+// read the whole file by 4098 byte pieces and fix the encoding
+while(!feof($fp)) {
+	$fixThisString = fread($fp, 4098);
+	$fixThisString = fixMixedCharacters($fixThisString);
+	fwrite($fp2, $fixThisString);
+}
+fclose($fp);
+fclose($fp2);
