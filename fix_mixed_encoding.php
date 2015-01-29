@@ -72,9 +72,9 @@ function fixMixedCharacters($string) {
 }
 
 // open input file
-$fp = fopen($argv[1], ‚r‘);
+$fp = fopen($argv[1], 'r');
 // open/create output file
-$fp2 = fopen($argv[2], ‚w+‘);
+$fp2 = fopen($argv[2], 'w+');
 // read the whole file by 4098 byte pieces and fix the encoding
 while(!feof($fp)) {
 	$fixThisString = fread($fp, 4098);
